@@ -1,5 +1,13 @@
 function mergeSort(array) {
-  
+  if (array.length <= 1) return array;
+
+  let low = 0;
+  let high = array.length;
+
+  let mid = Math.ceil((low + high) / 2);
+  let left = mergeSort(array.slice(low, mid));
+  let right = mergeSort(array.slice(mid, high));
+  return merge(left, right);
 }
 
 function merge(left, right) {
@@ -17,10 +25,4 @@ function merge(left, right) {
 }
 
 // TEST CASES
-console.log(`[6], [5] merged => ${merge([6], [5])}`);
-console.log("________________");
-console.log(
-  `[1, 3, 4, 5], [7, 8, 9] merged => ${merge([1, 3, 4, 5], [7, 8, 9])}`
-);
-console.log("________________");
-console.log(`[5, 4, 9], [3, 1, 2]  merged => ${merge([4, 5, 9], [1, 2, 3])}`);
+console.log(`${mergeSort([1, 6, 3, 4, 8, 9, 2])}`);
