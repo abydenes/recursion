@@ -14,15 +14,17 @@ function merge(left, right) {
   let resultArr = [];
   for (let i = 0, j = 0; i < left.length, j < right.length; ) {
     if (left[i] < right[j]) {
-      resultArr.push(left.splice(i, 1));
+      resultArr.push(left.shift());
     } else {
-      resultArr.push(right.splice(j, 1));
+      resultArr.push(right.shift());
     }
   }
-  left.length ? resultArr.push(...left) : false;
-  right.length ? resultArr.push(...right) : false;
+  resultArr.push(...left);
+  resultArr.push(...right);
   return resultArr;
 }
 
 // TEST CASES
 console.log(`${mergeSort([1, 6, 3, 4, 8, 9, 2])}`);
+console.log(`${mergeSort([3, 6, 7, 8, 1, 2, 0, 5])}`);
+console.log(`${mergeSort([11, 23, 1, 2, 99, 64, 32, 71, 7, 8, 9])}`);
